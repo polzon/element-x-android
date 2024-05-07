@@ -154,4 +154,3 @@ class AdvancedSettingsPresenter @Inject constructor(
         )
     }
 }
-
