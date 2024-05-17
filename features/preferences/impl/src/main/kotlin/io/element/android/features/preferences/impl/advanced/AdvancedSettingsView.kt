@@ -100,8 +100,7 @@ fun AdvancedSettingsView(
         )
         ListItem(
             headlineContent = {
-                // TODO i18n
-                Text(text = "Push provider")
+                Text(text = stringResource(id = R.string.screen_advanced_settings_push_provider_android))
             },
             trailingContent = when (state.pushDistributor) {
                 AsyncAction.Uninitialized,
@@ -146,7 +145,7 @@ fun AdvancedSettingsView(
 
     if (state.showChangePushProviderDialog) {
         SingleSelectionDialog(
-            title = "Select Push provider",
+            title = stringResource(id = R.string.screen_advanced_settings_choose_distributor_dialog_title_android),
             options = state.pushDistributors.map {
                 ListOption(title = it)
             }.toImmutableList(),
