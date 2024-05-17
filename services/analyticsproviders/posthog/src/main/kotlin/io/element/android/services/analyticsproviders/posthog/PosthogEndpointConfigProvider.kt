@@ -26,13 +26,13 @@ class PosthogEndpointConfigProvider @Inject constructor(
     fun provide(): PosthogEndpointConfig {
         return when (buildMeta.buildType) {
             BuildType.RELEASE -> PosthogEndpointConfig(
-                host = "https://posthog.element.io",
-                apiKey = "phc_Jzsm6DTm6V2705zeU5dcNvQDlonOR68XvX2sh1sEOHO",
+                host = "",
+                apiKey = "",
             )
             BuildType.NIGHTLY,
             BuildType.DEBUG -> PosthogEndpointConfig(
-                host = "https://posthog.element.dev",
-                apiKey = "phc_VtA1L35nw3aeAtHIx1ayrGdzGkss7k1xINeXcoIQzXN",
+                host = "",
+                apiKey = "",
             )
         }
     }
