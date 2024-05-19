@@ -19,6 +19,9 @@ package io.element.android.features.preferences.api.store
 import kotlinx.coroutines.flow.Flow
 
 interface AppPreferencesStore {
+    suspend fun setMaterialYou(enabled: Boolean)
+    fun isMaterialYouEnabled(): Flow<Boolean>
+
     suspend fun setRichTextEditorEnabled(enabled: Boolean)
     fun isRichTextEditorEnabledFlow(): Flow<Boolean>
 

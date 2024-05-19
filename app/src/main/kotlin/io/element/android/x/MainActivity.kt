@@ -90,7 +90,7 @@ class MainActivity : NodeActivity() {
         val migrationState = appBindings.migrationEntryPoint().present()
         ElementTheme(
             darkTheme = theme.isDark(),
-            dynamicColor = true
+            dynamicColor = true,
         ) {
             CompositionLocalProvider(
                 LocalSnackbarDispatcher provides appBindings.snackbarDispatcher(),

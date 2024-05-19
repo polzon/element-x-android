@@ -25,6 +25,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.squareup.anvil.annotations.ContributesBinding
 import io.element.android.features.preferences.api.store.AppPreferencesStore
+import io.element.android.libraries.core.bool.orFalse
 import io.element.android.libraries.core.bool.orTrue
 import io.element.android.libraries.core.meta.BuildMeta
 import io.element.android.libraries.core.meta.BuildType
@@ -36,6 +37,7 @@ import javax.inject.Inject
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "elementx_preferences")
 
+private val materialYouKey = booleanPreferencesKey("materialYou")
 private val richTextEditorKey = booleanPreferencesKey("richTextEditor")
 private val developerModeKey = booleanPreferencesKey("developerMode")
 private val customElementCallBaseUrlKey = stringPreferencesKey("elementCallBaseUrl")
@@ -47,6 +49,18 @@ class DefaultAppPreferencesStore @Inject constructor(
     private val buildMeta: BuildMeta,
 ) : AppPreferencesStore {
     private val store = context.dataStore
+
+    override suspend fun setMaterialYou(enabled: Boolean) {
+        store.edit { prefs ->
+            prefs[materialYouKey] = enabled
+        }
+    }
+
+    override fun isMaterialYouEnabled(): Flow<Boolean> {
+        return store.data.map { prefs ->
+            prefs[materialYouKey].orFalse()
+        }
+    }
 
     override suspend fun setRichTextEditorEnabled(enabled: Boolean) {
         store.edit { prefs ->

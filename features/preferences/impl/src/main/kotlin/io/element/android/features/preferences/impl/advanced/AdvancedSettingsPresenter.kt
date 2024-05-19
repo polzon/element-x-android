@@ -38,6 +38,9 @@ class AdvancedSettingsPresenter @Inject constructor(
     @Composable
     override fun present(): AdvancedSettingsState {
         val localCoroutineScope = rememberCoroutineScope()
+        val isMaterialYouEnabled by appPreferencesStore
+            .isMaterialYouEnabled()
+            .collectAsState(initial = false)
         val isRichTextEditorEnabled by appPreferencesStore
             .isRichTextEditorEnabledFlow()
             .collectAsState(initial = false)
@@ -55,7 +58,7 @@ class AdvancedSettingsPresenter @Inject constructor(
         fun handleEvents(event: AdvancedSettingsEvents) {
             when (event) {
                 is AdvancedSettingsEvents.SetMaterialYouEnabled -> localCoroutineScope.launch {
-                    // TODO
+                    appPreferencesStore.setMaterialYou(event.enabled)
                 }
                 is AdvancedSettingsEvents.SetRichTextEditorEnabled -> localCoroutineScope.launch {
                     appPreferencesStore.setRichTextEditorEnabled(event.enabled)
@@ -76,7 +79,7 @@ class AdvancedSettingsPresenter @Inject constructor(
         }
 
         return AdvancedSettingsState(
-            isMaterialYouEnabled = false,
+            isMaterialYouEnabled = isMaterialYouEnabled,
             isRichTextEditorEnabled = isRichTextEditorEnabled,
             isDeveloperModeEnabled = isDeveloperModeEnabled,
             isSharePresenceEnabled = isSharePresenceEnabled,
