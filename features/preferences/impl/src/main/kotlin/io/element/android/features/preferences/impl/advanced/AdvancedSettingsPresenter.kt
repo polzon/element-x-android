@@ -54,6 +54,9 @@ class AdvancedSettingsPresenter @Inject constructor(
         var showChangeThemeDialog by remember { mutableStateOf(false) }
         fun handleEvents(event: AdvancedSettingsEvents) {
             when (event) {
+                is AdvancedSettingsEvents.SetMaterialYouEnabled -> localCoroutineScope.launch {
+                    // TODO
+                }
                 is AdvancedSettingsEvents.SetRichTextEditorEnabled -> localCoroutineScope.launch {
                     appPreferencesStore.setRichTextEditorEnabled(event.enabled)
                 }
@@ -73,6 +76,7 @@ class AdvancedSettingsPresenter @Inject constructor(
         }
 
         return AdvancedSettingsState(
+            isMaterialYouEnabled = false,
             isRichTextEditorEnabled = isRichTextEditorEnabled,
             isDeveloperModeEnabled = isDeveloperModeEnabled,
             isSharePresenceEnabled = isSharePresenceEnabled,

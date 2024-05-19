@@ -16,6 +16,7 @@
 
 package io.element.android.x
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -88,7 +89,8 @@ class MainActivity : NodeActivity() {
             .collectAsState(initial = Theme.System)
         val migrationState = appBindings.migrationEntryPoint().present()
         ElementTheme(
-            darkTheme = theme.isDark()
+            darkTheme = theme.isDark(),
+            dynamicColor = true
         ) {
             CompositionLocalProvider(
                 LocalSnackbarDispatcher provides appBindings.snackbarDispatcher(),
@@ -138,6 +140,7 @@ class MainActivity : NodeActivity() {
      * - a deep link have been clicked
      * - the app is going to background (<- this is strange)
      */
+    @SuppressLint("MissingSuperCall")
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         Timber.tag(loggerTag.value).w("onNewIntent")

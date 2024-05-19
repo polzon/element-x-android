@@ -59,6 +59,20 @@ fun AdvancedSettingsView(
         )
         ListItem(
             headlineContent = {
+                Text(text = "Dynamic color")
+            },
+            supportingContent = {
+                Text(text = "Enable color palette from your system")
+            },
+            trailingContent = ListItemContent.Switch(
+                checked = state.isMaterialYouEnabled
+            ),
+            onClick = {
+                state.eventSink(AdvancedSettingsEvents.SetMaterialYouEnabled(!state.isMaterialYouEnabled))
+            }
+        )
+        ListItem(
+            headlineContent = {
                 Text(text = stringResource(id = CommonStrings.common_rich_text_editor))
             },
             supportingContent = {

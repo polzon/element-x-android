@@ -23,6 +23,7 @@ open class AdvancedSettingsStateProvider : PreviewParameterProvider<AdvancedSett
     override val values: Sequence<AdvancedSettingsState>
         get() = sequenceOf(
             aAdvancedSettingsState(),
+            aAdvancedSettingsState(isMaterialYouEnabled = false),
             aAdvancedSettingsState(isRichTextEditorEnabled = true),
             aAdvancedSettingsState(isDeveloperModeEnabled = true),
             aAdvancedSettingsState(showChangeThemeDialog = true),
@@ -34,11 +35,13 @@ fun aAdvancedSettingsState(
     isRichTextEditorEnabled: Boolean = false,
     isDeveloperModeEnabled: Boolean = false,
     isSendPublicReadReceiptsEnabled: Boolean = false,
+    isMaterialYouEnabled: Boolean = false,
     showChangeThemeDialog: Boolean = false,
 ) = AdvancedSettingsState(
     isRichTextEditorEnabled = isRichTextEditorEnabled,
     isDeveloperModeEnabled = isDeveloperModeEnabled,
     isSharePresenceEnabled = isSendPublicReadReceiptsEnabled,
+    isMaterialYouEnabled = isMaterialYouEnabled,
     theme = Theme.System,
     showChangeThemeDialog = showChangeThemeDialog,
     eventSink = {}
