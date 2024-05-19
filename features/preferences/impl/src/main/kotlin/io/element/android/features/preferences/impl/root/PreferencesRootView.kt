@@ -202,12 +202,12 @@ private fun ColumnScope.GeneralSection(
         leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Info())),
         onClick = onOpenAbout,
     )
-    ListItem(
-        headlineContent = { Text(stringResource(id = CommonStrings.common_report_a_problem)) },
-        leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.ChatProblem())),
-        onClick = onOpenRageShake
-    )
-    if (state.showAnalyticsSettings) {
+    if (false) { // state.showAnalyticsSettings
+        ListItem(
+            headlineContent = { Text(stringResource(id = CommonStrings.common_report_a_problem)) },
+            leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.ChatProblem())),
+            onClick = onOpenRageShake
+        )
         ListItem(
             headlineContent = { Text(stringResource(id = CommonStrings.common_analytics)) },
             leadingContent = ListItemContent.Icon(IconSource.Vector(CompoundIcons.Chart())),
@@ -237,7 +237,8 @@ private fun Footer(
 ) {
     val text = remember(version, deviceId) {
         buildString {
-            append(version)
+            append("Ocarina Version 0.1\n")
+            append("Element X $version")
             if (deviceId != null) {
                 append("\n")
                 append(deviceId)

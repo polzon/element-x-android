@@ -31,7 +31,7 @@ fun aPreferencesRootState(
     showSecureBackupBadge = true,
     accountManagementUrl = "aUrl",
     devicesManagementUrl = "anOtherUrl",
-    showAnalyticsSettings = true,
+    showAnalyticsSettings = false,
     showDeveloperSettings = true,
     showNotificationSettings = true,
     showLockScreenSettings = true,
